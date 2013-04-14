@@ -1,0 +1,22 @@
+{
+    "name": "tui/session-bundle",
+    "description": "Adds a session expiry listener",
+    "keywords": ["symfony", "session"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Robinson",
+            "email": "matt@tui.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Tui\\SessionBundle": "" }
+    },
+    "target-dir": "Tui/SessionBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "develop"
+        }
+    }
+}
