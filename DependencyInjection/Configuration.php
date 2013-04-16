@@ -22,7 +22,8 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->scalarNode('session_timeout')->defaultValue(3600)->end()
+            ->integerNode('session_timeout')->defaultValue(3600)->end()
+            ->scalarNode('redirect_to')->defaultNull()->end()
             ->end();
 
 

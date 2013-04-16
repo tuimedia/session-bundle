@@ -22,6 +22,9 @@ class TuiSessionExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('tui_session.session_timeout', $config['session_timeout']);
+        $container->setParameter('tui_session.redirect_to', $config['redirect_to']);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }
