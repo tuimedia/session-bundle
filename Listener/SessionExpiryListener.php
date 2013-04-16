@@ -2,7 +2,7 @@
 namespace Tui\SessionBundle\Listener;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -44,7 +44,16 @@ class SessionExpiryListener implements EventSubscriberInterface
         $idle_timeout = $this->container->getParameter('tui_session.session_timeout');
         if (time() - $session_data->getLastUsed() > $idle_timeout) {
             $session->invalidate();
-            throw new CredentialsExpiredException(); // redirect to expired session page
+
+            $path = $this->container->getParameter('tui_session.redirect_to');
+            if ($path) {
+                $url = $this->container->get('router')->generate($path);
+                $response = new RedirectResponse($url);
+                $event->setResponse($response);
+                return;
+            }
+
+            throw new CredentialsExpiredException();
         }
 
     }
