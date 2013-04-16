@@ -15,7 +15,7 @@ Add this require & repository reference to your `composer.json`:
     }
 ],
 "require": {
-    "tui/session-bundle": "~1.0"
+    "tui/session-bundle": "~1.1"
 }
 
 ```
