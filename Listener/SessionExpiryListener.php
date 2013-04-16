@@ -45,6 +45,14 @@ class SessionExpiryListener implements EventSubscriberInterface
         if (time() - $session_data->getLastUsed() > $idle_timeout) {
             $session->invalidate();
 
+            // Return custom response if provided
+            $expiry_response = $this->container->getParameter('tui_session.expired_response');
+            if ($expiry_response) {
+                $event->setResponse($this->container->get($expiry_response));
+                return;
+            }
+
+            // Redirect to route name if provided
             $path = $this->container->getParameter('tui_session.redirect_to');
             if ($path) {
                 $url = $this->container->get('router')->generate($path);

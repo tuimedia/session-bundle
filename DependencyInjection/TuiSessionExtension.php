@@ -24,6 +24,7 @@ class TuiSessionExtension extends Extension
 
         $container->setParameter('tui_session.session_timeout', $config['session_timeout']);
         $container->setParameter('tui_session.redirect_to', $config['redirect_to']);
+        $container->setParameter('tui_session.expired_response', $config['expired_response']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');

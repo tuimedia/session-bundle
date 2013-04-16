@@ -49,3 +49,16 @@ In your `app.yml` file:
 tui_session:
     redirect_route: login_expired
 ```
+
+Alternatively you can create a custom response, register it as a service and configure it to be returned instead. A trivial example:
+
+```yaml
+tui_session:
+    expired_response: session_expired
+
+services:
+    session_expired:
+        class: Symfony\Component\HttpFoundation\Response
+        arguments:
+            - 'Your login expired, sorry!'
+```
