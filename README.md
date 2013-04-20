@@ -4,20 +4,10 @@ Adds a listener that expires user sessions after a configurable period of inacti
 
 ## Installation
 
-Add this require & repository reference to your `composer.json`:
+Add this require reference to your `composer.json`:
 
-```json
-//…
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "http://github.com/inanimatt/csv-file.git"
-    }
-],
-"require": {
-    "tui/session-bundle": "~1.1"
-}
-
+```sh
+php composer.phar require tui/session-bundle:~1.1
 ```
 
 Add the Bundle to your `app/AppKernel.php`:
