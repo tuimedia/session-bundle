@@ -4,20 +4,10 @@ Adds a listener that expires user sessions after a configurable period of inacti
 
 ## Installation
 
-Add this require & repository reference to your `composer.json`:
+Add this require reference to your `composer.json`:
 
-```json
-//…
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "http://github.com/inanimatt/csv-file.git"
-    }
-],
-"require": {
-    "tui/session-bundle": "~1.0"
-}
-
+```sh
+php composer.phar require tui/session-bundle:~1.1
 ```
 
 Add the Bundle to your `app/AppKernel.php`:
@@ -41,16 +31,21 @@ tui_session:
 
 ## Redirecting on expiry
 
-By default when the session expires, the listener will invalidate the session and throw a CredentialsExpired exception. Obviously it'd be much better to redirect the user to a "Login expired" page. Right now you can configure a route name to which the listener will redirect the user:
+By default when the session expires, the listener will invalidate the session and throw a CredentialsExpired exception. Obviously it'd be much better to redirect the user to a "Login expired" page. There are two ways you can do that:
 
-In your `app.yml` file:
+
+### Redirect to a route
+
+The listener can redirect to a given route when the session expires. This is super easy, but not very flexible. In your `app.yml` file:
 
 ```yaml
 tui_session:
     redirect_route: login_expired
 ```
 
-Alternatively you can create a custom response, register it as a service and configure it to be returned instead. A trivial example:
+### Return a custom response
+
+Alternatively you can create a custom response, register it as a service and configure it to be returned instead. Here's a trivial example that uses the built-in response class.
 
 ```yaml
 tui_session:
@@ -62,3 +57,4 @@ services:
         arguments:
             - 'Your login expired, sorry!'
 ```
+
