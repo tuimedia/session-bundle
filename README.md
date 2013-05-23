@@ -22,7 +22,7 @@ public function registerBundles()
     // …
 ```
 
-You can configure the timeout in your `app.yml` file:
+You can configure the timeout in your `config.yml` file:
 
 ```yaml
 tui_session:
@@ -36,7 +36,7 @@ By default when the session expires, the listener will invalidate the session an
 
 ### Redirect to a route
 
-The listener can redirect to a given route when the session expires. This is super easy, but not very flexible. In your `app.yml` file:
+The listener can redirect to a given route when the session expires. This is super easy, but not very flexible. In your `config.yml` file:
 
 ```yaml
 tui_session:
